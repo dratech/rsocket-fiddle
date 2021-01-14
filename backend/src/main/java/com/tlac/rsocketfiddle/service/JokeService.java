@@ -36,14 +36,14 @@ public class JokeService {
 
     public Flux<Joke> streamAllJoke() {
         return Flux.create(sink ->
-                jokes.forEach((pos, joke) -> sink.next(new Joke(pos, joke)))
+            jokes.forEach((pos, joke) -> sink.next(new Joke(pos, joke)))
         );
     }
 
     public Mono<Joke> pushRandomJoke() {
         return Mono.just(random.nextInt(jokes.size()))
-                .map(pos -> new Joke(pos, jokes.get(pos)))
-                .doOnNext(joke -> rsocketService.sendJokeToClients(joke));
+            .map(pos -> new Joke(pos, jokes.get(pos)))
+            .doOnNext(joke -> rsocketService.sendJokeToClients(joke));
     }
 
 }
