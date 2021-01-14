@@ -2,4 +2,4 @@ spring:
   rsocket:
     server:
       transport: websocket
-      port: 8080
+      port: 8085
